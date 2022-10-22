@@ -16,7 +16,6 @@ java {
     }
 }
 
-
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jup:wqiter:junit-jupiter-engine:5.8.1")
