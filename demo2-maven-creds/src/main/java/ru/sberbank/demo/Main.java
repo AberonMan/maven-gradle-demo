@@ -8,6 +8,6 @@ import java.nio.file.Path;
 public class Main {
     
     public static void main(String[] args) throws URISyntaxException, IOException {
-        System.out.println(Files.readString(Path.of(Main.class.getResource("/gif.txt").toURI())));
+        System.out.println(Files.readString(Path.of(Main.class.getResource("/cat.txt").toURI())));
     }
 }

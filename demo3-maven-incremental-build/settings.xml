@@ -2,15 +2,6 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-
-    <servers>
-        <server>
-            <id>maven-central</id>
-            <username>yourcompaylogin</username>
-            <password>{JrZMJ16qz4AHzmy9pGAX9BKNnB0Nv8VHdrx9RANiZTRI3E0g9sJ6Y4GAemZpqevO}</password>
-        </server>
-    </servers>
-
     <profiles>
         <profile>
             <id>maven-central</id>

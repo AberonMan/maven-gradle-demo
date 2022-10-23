@@ -2,14 +2,14 @@
 
 Maven credentials can be specified in settings xml in safe encrypted way:
 1. You generate master key and save it to settings_security.xml
-````
-todo Fill command to 
-````
+```
+mvn --encrypt-master-password you_glorious_master_password
+```
 2. You encrypt you password and save to settings.xml in server block
-````
-todo Fill command to 
-````
-3. Run you project
-````
+```
+mvn --encrypt-password you_accouunt_password -Dsettings.security=./settings_security.xml
+```
+3. Run you project with you enrypted password in safe way
+```
 todo Run you project
-````
+```
