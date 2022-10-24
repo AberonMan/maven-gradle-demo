@@ -11,14 +11,16 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     val credentials: CredentialsContainer by extra
+    val mavenUsernameProperty = "mvnUsername"
+    val mavenPasswordProperty = "mvnPassword"
 
     // obtain property from credential plugin if exists, if not get it from gradle property
     val mavenUsername: String? =
-        credentials.getProperty("mavenUsername") as? String ?: project.findProperty("mavenUsername") as? String
+        credentials.getProperty(mavenUsernameProperty) as? String ?: project.findProperty(mavenUsernameProperty) as? String
 
     // obtain property from credential plugin if exists, if not get it from gradle property
     val mavenPassword: String? =
-        credentials.getProperty("mavenPassword") as? String ?: project.findProperty("mavenUsername") as? String
+        credentials.getProperty(mavenPasswordProperty) as? String ?: project.findProperty(mavenPasswordProperty) as? String
 
     maven {
         url = uri(ArtifactRepositoryContainer.MAVEN_CENTRAL_URL)

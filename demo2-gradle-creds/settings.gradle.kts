@@ -7,15 +7,15 @@ pluginManagement {
             // you company URL here
             url = uri("https://plugins.gradle.org/m2/")
             credentials {
-                val mavenUsername: String? by settings
-                val mavenPassword: String? by settings
+                val mvnUsername: String? by settings
+                val mvnPassword: String? by settings
 
                 // if you want to specify password and username for gradle plugin you should load it from gradle.properties file
-                mavenUsername?.let {
-                    username = mavenUsername
+                mvnUsername?.let {
+                    username = mvnUsername
                 }
-                mavenPassword?.let {
-                    password = mavenPassword
+                mvnPassword?.let {
+                    password = mvnPassword
                 }
             }
         }
