@@ -13,6 +13,8 @@ public final class DemoFilesUtils {
     }
     
     public static String loadFile(String fileName) {
+//        System.out.println("Loading from  file: " + fileName);
+        
         try {
             return Files.readString(Path.of(DemoFilesUtils.class.getResource("/" + fileName).toURI()));
         } catch (IOException e) {
