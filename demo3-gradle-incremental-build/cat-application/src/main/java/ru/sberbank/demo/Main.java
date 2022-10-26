@@ -1,11 +1,10 @@
 package ru.sberbank.demo;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import ru.sberbank.demo.utils.DemoFilesUtils;
 
 public class Main {
     
-    public static void main(String[] args) throws Exception {
-        System.out.println(Files.readString(Path.of(Main.class.getResource("/cat.txt").toURI())));
+    public static void main(String[] args) {
+        System.out.println(DemoFilesUtils.loadFile("cat.txt"));
     }
 }

@@ -12,9 +12,9 @@ public final class DemoFilesUtils {
         throw new IllegalStateException("Can't create DemoFilesUtils!");
     }
     
-    public static String loadFiles(String fileName) {
-//        System.out.println("Loading from  file: " + fileName);
-        
+    public static String loadFile(String fileName) {
+        System.out.println("Loading from  file: " + fileName);
+
         try {
             return Files.readString(Path.of(DemoFilesUtils.class.getResource("/" + fileName).toURI()));
         } catch (IOException e) {

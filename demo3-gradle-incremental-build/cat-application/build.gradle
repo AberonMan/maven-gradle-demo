@@ -1,0 +1,14 @@
+plugins {
+    id("application")
+    id("demo.java-conventions")
+}
+
+
+dependencies {
+    implementation(project(":common-utils"))
+    implementation(project(":another-library"))
+}
+
+application {
+    mainClass.set("ru.sberbank.demo.Main")
+}

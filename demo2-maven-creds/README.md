@@ -11,5 +11,5 @@ mvn --encrypt-password you_accouunt_password -Dsettings.security=./settings_secu
 ```
 3. Run you project with you enrypted password in safe way
 ```
-mvn package exec:exec -s ./settings.xml -t ./toolchain.xml
+mvn package exec:exec -s ./settings.xml -t ./toolchain.xml -Dsettings.security=./settings_security.xml
 ```
