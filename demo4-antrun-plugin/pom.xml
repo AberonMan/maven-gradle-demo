@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.sberbank.demo</groupId>
+    <artifactId>demo1-pure-simple-maven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
+        <maven-toolchains-plugin.version>1.1</maven-toolchains-plugin.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>Test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <configuration>
+                                    <tasks>
+                                        <copy file="${project.basedir}/cat.txt"
+                                              toFile="${project.build.outputDirectory}/cat.txt" overwrite="true" />
+                                        <replace token='&amp;' value='T' dir="${project.build.outputDirectory}">
+                                            <include name="cat.txt"/>
+                                        </replace>
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <replace token='@NameToReplace@' value='TestProfile' dir="${project.build.outputDirectory}">
+                                            <include name="cat.txt"/>
+                                        </replace>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>Prod</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <configuration>
+                                    <tasks>
+                                        <copy file="${project.basedir}/cat.txt"
+                                              toFile="${project.build.outputDirectory}/cat.txt" overwrite="true" />
+                                    </tasks>
+                                    <tasks>
+                                        <replace token='&amp;' value='P' dir="${project.build.outputDirectory}">
+                                            <include name="cat.txt"/>
+                                        </replace>
+                                    </tasks>
+                                    <tasks>
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <replace token='@NameToReplace@' value='ProdProfile' dir="${project.build.outputDirectory}">
+                                            <include name="cat.txt"/>
+                                        </replace>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath />
+                        <argument>ru.sberbank.demo.Main</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>${maven-toolchains-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>${maven.compiler.target}</version>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
