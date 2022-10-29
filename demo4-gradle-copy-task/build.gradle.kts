@@ -21,30 +21,32 @@ dependencies {
     testRuntimeOnly("org.junit.jup:wqiter:junit-jupiter-engine:5.8.1")
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
 
+tasks {
+    named<Test>("test") {
+        useJUnitPlatform()
+    }
 
-// It;s easy to break build process if in name will be assemble tas
-tasks.named("processResources"){
-    dependsOn(":copyFile" )
-}
+    named("processResources"){
+        dependsOn(":copyFile" )
+    }
 
-tasks.register<Copy>("copyFile") {
-    from("${project.rootDir}/cat.txt") {
-        filter {
-            if (project.hasProperty("TEST")) it.replace("&", "T")
-            else {
-                it.replace("&", "P").replace("@NameToReplace@", "ProdProfile")
+    register<Copy>("copyFile") {
+        from("${project.rootDir}/cat.txt") {
+            filter {
+                if (project.hasProperty("TEST")) replaceProfile(it, "TestProfile", "R")
+                else {
+                    replaceProfile(it, "ProdProfile", "D")
+                }
             }
         }
+        into("${sourceSets.main.get().output.resourcesDir}")
+
     }
-    into("${sourceSets.main.get().output.resourcesDir}")
-
 }
-
 
 application {
     mainClass.set("ru.sberbank.demo.Main")
 }
+
+fun replaceProfile(content: String, profile: String, token: String) = content.replace("&", token).replace("@NameToReplace@", profile)
