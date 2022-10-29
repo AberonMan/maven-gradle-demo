@@ -1,0 +1,17 @@
+//plugins {
+//    id("demo.java-conventions")
+//    id("application")
+//}
+// apply broke auto complete
+apply(plugin: "application")
+apply(plugin: "demo.java-conventions")
+// no autocomplete in extracted sprints too
+apply(from: "${rootProject.projectDir.path}/gradle/application-plugin.kts")
+dependencies {
+    implementation(project(":common-utils"))
+}
+
+// no auto complete will be in
+//application {
+//    mainClass.set("ru.sberbank.demo.Main")
+//}
