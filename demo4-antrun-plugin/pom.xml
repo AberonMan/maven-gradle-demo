@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.sberbank.demo</groupId>
-    <artifactId>demo1-pure-simple-maven</artifactId>
+    <artifactId>demo4-antrun-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
