@@ -10,4 +10,5 @@ Run and check that not jms api in lib folder:
 
 Run to check that boot is started in standalone mode:
 ```
-./gradlew bootRun```
+./gradlew bootRun
+```
